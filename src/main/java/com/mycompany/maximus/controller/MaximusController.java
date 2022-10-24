@@ -13,25 +13,13 @@ import javax.validation.Valid;
 @RequestMapping("/maximus")
 public class MaximusController {
 
-    private  final  AskRepository askRepository;
 
-    @Autowired
-    public MaximusController(AskRepository askRepository) {
-        this.askRepository = askRepository;
-    }
 
     @GetMapping()
     public String showMainPage(@ModelAttribute("ask") Ask ask) {
-
         return "index";
     }
 
 
-    @PostMapping()
-    public String createAsk(@ModelAttribute("ask") @Valid Ask ask, BindingResult bindingResult) {
-        if(bindingResult.hasErrors())
-            return "redirect:/maximus";
-        askRepository.save(ask);
-        return "redirect:/maximus";
-    }
+
 }

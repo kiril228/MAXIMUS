@@ -1,7 +1,7 @@
 package com.mycompany.maximus.models;
 
+
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -22,7 +22,7 @@ public class Ask {
 
     @NotEmpty(message = "Email should not be empty")
     @Column(name = "phone_number")
-    @Pattern(regexp = "^\\+?3?8?(\\d{9})$", message = "Pleas write +380...(ua phone number)")
+    //@Pattern(regexp = "^\\+[0-9]{3}\\s\\((\\d+)\\)-\\d{3}-\\d{2}-\\d{2}", message = "Pleas write +380...(ua phone number)")
     private String phoneNumber;
 
     public Ask() {
