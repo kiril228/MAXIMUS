@@ -1,68 +1,1 @@
-package com.mycompany.maximus.models;
-
-
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-@Entity
-@Table(name = "ask")
-public class Ask {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
-    @Column(name = "name")
-    private String name;
-
-    @NotEmpty(message = "Email should not be empty")
-    @Column(name = "phone_number")
-    //@Pattern(regexp = "^\\+[0-9]{3}\\s\\((\\d+)\\)-\\d{3}-\\d{2}-\\d{2}", message = "Pleas write +380...(ua phone number)")
-    private String phoneNumber;
-
-    public Ask() {
-    }
-
-    public Ask(String name, String phoneNumber) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "Ask{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
-    }
-}
+package com.mycompany.maximus.models;import javax.persistence.*;import javax.validation.constraints.Min;import javax.validation.constraints.NotEmpty;import javax.validation.constraints.Pattern;import javax.validation.constraints.Size;@Entity@Table(name = "ask")public class Ask {    @Id    @GeneratedValue(strategy = GenerationType.IDENTITY)    @Column(name = "id")    private Integer id;    @NotEmpty(message = "Ім'я та фамілія мають бути заповниними")//    @Pattern(regexp = "^[а-щА-ЩЬьЮюЯяЇїІіЄєҐґ][а-щА-ЩЬьЮюЯяЇїІіЄєҐґ]+ [а-щА-ЩЬьЮюЯяЇїІіЄєҐґ][а-щА-ЩЬьЮюЯяЇїІіЄєҐґ]+$",//            message = "Не корректно введено ім'я або прізвище! Приклад: Кирило Ніжник")    @Column(name = "name")    private String name;    @NotEmpty(message = "Щоб ми зв'язались з вами вам потрібно прикріпити свій номер")    @Column(name = "phone_number")//    @Pattern(regexp = "^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",//            message = "Введіть коректний номер телефону! Приклад: +111 (202) 555-0125")    private String phoneNumber;    public Ask() {    }    public Ask(String name, String phoneNumber) {        this.name = name;        this.phoneNumber = phoneNumber;    }    public Integer getId() {        return id;    }    public void setId(Integer id) {        this.id = id;    }    public String getName() {        return name;    }    public void setName(String name) {        this.name = name;    }    public String getPhoneNumber() {        return phoneNumber;    }    public void setPhoneNumber(String phoneNumber) {        this.phoneNumber = phoneNumber;    }    @Override    public String toString() {        return "Ask{" +                "id=" + id +                ", name='" + name + '\'' +                ", phoneNumber='" + phoneNumber + '\'' +                '}';    }}

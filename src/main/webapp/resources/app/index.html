@@ -152,7 +152,7 @@
                                                                 у нас ти зможешь створити тіло своєї мрії.</p>
                                                 </div>
                                                 <a class="about-inner__box-btn wow animate__animated animate__fadeInDown "
-                                                        data-wow-offset="50" href="#training">Купити комплекс
+                                                        data-wow-offset="50" th:href="@{/maximus/buy-season-ticket}">Купити комплекс
                                                         тренувань</a>
                                         </div>
                                 </div>
@@ -549,11 +549,13 @@
                                                 <div class="connection__inner-form-title"><span>Маєте питання?</span>
                                                         Залиште запит і ми зателефонуємо вам у межах 10 хвилин</div>
                                                 <form th:method="POST" th:action="@{/maximus}" th:object="${ask}">
-                                                        <input type="name" name="name" placeholder="Ім’я та призвище"
+                                                        <input type="name" th:field="*{name}" name="name" placeholder="Ім’я та призвище"
                                                                 required="" class="input">
-                                                        <input type="tel" name="tel" placeholder="Номер телефону"
+                                                        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                                                        <input type="tel" th:field="*{phoneNumber}" name="tel" placeholder="Номер телефону"
                                                                 required="" class="input">
-                                                        <button class="connection__inner-form-btn">Відправити</button>
+                                                        <div style="color:red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">PhoneNumber Error</div>
+                                                        <button type="submit" class="connection__inner-form-btn">Відправити</button>
                                                 </form>
                                         </div>
                                 </div>
