@@ -54,6 +54,11 @@ public class MaximusController {
         return "redirect:/maximus";
     }
 
+    @GetMapping("/profile")
+    public String getProfileUser(){
+        return "profile";
+    }
+
 
 
 }
