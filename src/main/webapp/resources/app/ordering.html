@@ -80,18 +80,19 @@
                         <div class="ordering-bg">
                                 <div class="ordering-inner">
                                         <div class="ordering-inner__left  ordering-inner__form">
-                                                <form  class="ordering__container-form">
+                                                <form th:method="POST" th:action="@{/maximus/buy-season-ticket}" th:object="${formBuyTicket}"
+                                                      class="ordering__container-form">
                                                         <div class="ordering__group-input">
-                                                                <input type="name" name="name"
+                                                                <input type="name" th:field="*{name}" name="name"
                                                                        placeholder="Введіть ваше ім’я"
                                                                        required="" class="ordering-input">
-                                                                <input type="surname" name="surname"
+                                                                <input type="surname" th:field="*{surname}" name="surname"
                                                                        placeholder="Введіть ваше прізвище"
                                                                        required="" class="ordering-input">
-                                                                <input type="tel" name="tel"
+                                                                <input type="tel" th:field="*{phoneNumber}" name="tel"
                                                                        placeholder="Введіть ваш номер телефону"
                                                                        required="" class="ordering-input">
-                                                                <input type="email" name="email"
+                                                                <input type="email" th:field="*{email}" name="email"
                                                                        placeholder="Введіть ваш email "
                                                                        required="" class="ordering-input">
                                                         </div>
@@ -99,7 +100,7 @@
                                                                 <div class="ordering-textarea-title">залишити
                                                                         Коментар
                                                                 </div>
-                                                                <textarea class="ordering__forms-input"
+                                                                <textarea th:field = "*{commentary}" class="ordering__forms-input"
                                                                           id="message" name="Message-Field"
                                                                           maxlength="5000"
                                                                           data-name="Message Field" placeholder=""
