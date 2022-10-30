@@ -24,12 +24,26 @@ public class GymMembership {
     @Column(name = "commentary")
     private String commentary;
 
-    private String gymMembershipType;
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_gym_membership_type",
+    referencedColumnName = "id")
+        private GymMembershipType gymMembershipType;
 
     public GymMembership() {
     }
 
     public GymMembership(String name, String surname, String phoneNumber, String email, String commentary, String gymMembershipType) {
+        this.name = name;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.commentary = commentary;
+
+    }
+
+    public GymMembership(String name, String surname, String phoneNumber, String email, String commentary, GymMembershipType gymMembershipType) {
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
@@ -86,11 +100,13 @@ public class GymMembership {
         this.commentary = commentary;
     }
 
-    public String getGymMembershipType() {
+    public GymMembershipType getGymMembershipType() {
         return gymMembershipType;
     }
 
-    public void setGymMembershipType(String gym_membership_type) {
-        this.gymMembershipType = gym_membership_type;
+    public void setGymMembershipType(GymMembershipType gymMembershipType) {
+        this.gymMembershipType = gymMembershipType;
     }
 }
+
+

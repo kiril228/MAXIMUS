@@ -2,10 +2,13 @@ package com.mycompany.maximus.controller;
 
 import com.mycompany.maximus.models.Ask;
 import com.mycompany.maximus.models.GymMembership;
+import com.mycompany.maximus.models.GymMembershipType;
 import com.mycompany.maximus.repositories.AskRepository;
 import com.mycompany.maximus.repositories.GymMembershipRepository;
+import com.mycompany.maximus.services.GymMembershipTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +22,13 @@ public class MaximusController {
     private  final AskRepository askRepository;
     private  final GymMembershipRepository gymMembershipRepository;
 
+    private  final GymMembershipTypeService gymMembershipTypeService;
+
     @Autowired
-    public MaximusController(AskRepository askRepository, GymMembershipRepository gymMembershipRepository) {
+    public MaximusController(AskRepository askRepository, GymMembershipRepository gymMembershipRepository, GymMembershipTypeService gymMembershipTypeService) {
         this.askRepository = askRepository;
         this.gymMembershipRepository = gymMembershipRepository;
+        this.gymMembershipTypeService = gymMembershipTypeService;
     }
 
 
@@ -33,8 +39,10 @@ public class MaximusController {
     }
 
     @GetMapping("/buy-season-ticket")
-    public String formBuyTicket(@ModelAttribute("formBuyTicket")GymMembership gymMembership){
+    public String formBuyTicket(@ModelAttribute("formBuyTicket")GymMembership gymMembership, Model model){
+        model.addAttribute("listTypeTraining", gymMembershipTypeService.getTypeTraining());
         return "ordering-1";
+
 
     }
 

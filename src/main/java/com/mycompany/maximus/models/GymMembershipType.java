@@ -1,8 +1,8 @@
 package com.mycompany.maximus.models;
 
-import com.sun.org.apache.xpath.internal.operations.String;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "gym_membership_type")
@@ -14,6 +14,9 @@ public class GymMembershipType {
     @Column(name = "name")
     private String name;
 
+    @OneToMany(mappedBy = "gymMembershipType")
+    private List<GymMembership> gymMembershipList;
+
     public GymMembershipType() {
     }
 
@@ -22,6 +25,18 @@ public class GymMembershipType {
         this.name = name;
     }
 
+    public GymMembershipType(String name, List<GymMembership> gymMembershipList) {
+        this.name = name;
+        this.gymMembershipList = gymMembershipList;
+    }
+
+    public List<GymMembership> getGymMembershipList() {
+        return gymMembershipList;
+    }
+
+    public void setGymMembershipList(List<GymMembership> gymMembershipList) {
+        this.gymMembershipList = gymMembershipList;
+    }
 
     public Long getId() {
         return id;
