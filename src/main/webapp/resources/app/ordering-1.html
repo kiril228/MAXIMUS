@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
         <meta charset="UTF-8">
@@ -8,12 +8,12 @@
         <title>MAXIMUS</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-        <link rel="shortcut icon" th:href="@{/app/img/favicon.ico}" type="img/icon/favicon.ico">
+        <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="img/icon/favicon.ico">
         <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
                 rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
-        <link rel="stylesheet" th:href="@{/app/css/style.min.css}">
+        <link rel="stylesheet" th:href="@{/css/style.min.css}">
+        <link rel="stylesheet" th:href="@{/scss/style.scss}">
         <link rel="stylesheet" type="" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
                 integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
@@ -25,17 +25,16 @@
         <header class="header">
                 <div class="header-fixed">
                         <div class="container">
-                                <div class="header-menu">
-                                        <button class="menu__btn-media">
+                                <div class="header-menu"><button class="menu__btn-media">
                                                 <span></span>
                                         </button>
-                                        <div class="header-menu__logo"><a href="index.html"><img
-                                                th:src="@{/app/img/logo-desktop.svg}" alt="logo"></a></div>
-                                        <div class="header-menu__logo-mobil"><a href="#"><img
-                                                th:src="@{/app/img/logo-mobil.svg}" alt="logo"></a></div>
+                                        <div class="header-menu__logo"><a href="/maximus"><img
+                                                                th:src="@{/img/logo-desktop.svg}" alt="logo"></a></div>
+                                        <div class="header-menu__logo-mobil"><a href="/maximus"><img th:src="@{/img/logo-mobil.svg}"
+                                                                alt="logo"></a></div>
                                         <nav>
                                                 <ul class="header-menu__list header-menu__list-media">
-                                                        <a href="/maximus#about">
+                                                        <a href="/maximus">
                                                                 <li class="header-menu__list-li">Про фітнес клуб</li>
                                                         </a>
                                                         <a href="#training">
@@ -57,56 +56,36 @@
                                                         <div class="header-menu__com-phone">+380 50 366 72 34</div>
                                                 </a>
                                                 <button class="header-menu__com-profile" data-modal><img
-                                                        th:src="@{/app/img/profile.svg}" alt="profile"></button>
+                                                        th:src="@{/img/profile.svg}" alt="profile"></button>
                                         </div>
                                 </div>
                         </div>
                 </div>
                 <div class="container">
-                        <div class="ordering-click" id="main">
-                                <div class="ordering-click-inner">
-                                        <div class="ordering-click__title">Дякуємо! Скоро консультант зв’яжиться з вами
-                                        </div>
-                                        <div class="ordering-click__btn">
-                                                <a href="/maximus" class="ordering-click__btn-1">Перейти на
-                                                        головну</a>
-                                                <!--                                        <a href="profile.html" class="ordering-click__btn-2">Перейти на сторінку-->
-                                                <!--                                                                                                профілю</a>-->
-                                        </div>
-                                </div>
-                        </div>
                         <div class="ordering" id="ordering">
                                 <div class="ordering-title">Оформлення замовлення</div>
                                 <div class="ordering-bg">
-                                        <form class="ordering-inner">
+                                        <form th:method="POST" th:action="@{/maximus/buy-season-ticket}" th:object="${formBuyTicket}" class="ordering-inner">
                                                 <div class="ordering-inner__left  ordering-inner__form">
-                                                        <div th:method="POST" th:action="@{/maximus/buy-season-ticket}"
-                                                                th:object="${formBuyTicket}"
-                                                                class="ordering__container-form">
+                                                        <div class="ordering__container-form">
                                                                 <div class="ordering__group-input">
-                                                                        <input type="name" th:field="*{name}"
-                                                                                name="name"
+                                                                        <input type="name" th:field="*{name}" name="name"
                                                                                 placeholder="Введіть ваше ім’я"
                                                                                 required="" class="ordering-input">
-                                                                        <input type="surname" th:field="*{surname}"
-                                                                                name="surname"
+                                                                        <input type="surname" th:field="*{surname}"  name="surname"
                                                                                 placeholder="Введіть ваше прізвище"
                                                                                 required="" class="ordering-input">
-                                                                        <input type="tel" th:field="*{phoneNumber}"
-                                                                                name="tel"
+                                                                        <input type="tel" th:field="*{phoneNumber}" name="tel"
                                                                                 placeholder="Введіть ваш номер телефону"
                                                                                 required="" class="ordering-input">
-                                                                        <input type="email" th:field="*{email}"
-                                                                                name="email"
+                                                                        <input type="email" th:field="*{email}" name="email"
                                                                                 placeholder="Введіть ваш email "
                                                                                 required="" class="ordering-input">
                                                                 </div>
                                                                 <div class="ordering-textarea">
                                                                         <div class="ordering-textarea-title">залишити
-                                                                                Коментар
-                                                                        </div>
-                                                                        <textarea th:field="*{commentary}"
-                                                                                class="ordering__forms-input"
+                                                                                Коментар</div>
+                                                                        <textarea th:field = "*{commentary}" class="ordering__forms-input"
                                                                                 id="message" name="Message-Field"
                                                                                 maxlength="5000"
                                                                                 data-name="Message Field" placeholder=""
@@ -121,15 +100,12 @@
                                                                         <input type="radio" id="f-option"
                                                                                 name="selector">
                                                                         <label for="f-option">Mini</label>
-
-
                                                                 </li>
 
                                                                 <li>
                                                                         <input type="radio" id="s-option"
                                                                                 name="selector">
                                                                         <label for="s-option">midi</label>
-
 
                                                                 </li>
 
@@ -138,7 +114,6 @@
                                                                                 name="selector">
                                                                         <label for="t-option">Maxi</label>
 
-
                                                                 </li>
                                                         </ul>
                                                         <div class="ordering-bottom">
@@ -146,10 +121,8 @@
                                                                                 увагу:</span>
                                                                         протягом години консультан зв’яжиться з вами
                                                                 </div>
-                                                                <button id="click" ерonclick="FuncImages()"
-                                                                        class="ordering-form-btn">Підтвердити
-                                                                        замовлення
-                                                                </button>
+                                                                <button type="submit" id="click" class="ordering-form-btn">Підтвердити
+                                                                        замовлення</button>
                                                         </div>
                                                 </div>
                                         </form>
@@ -166,30 +139,26 @@
                                         <div class="training-inner__top">
                                                 <div class="training-inner__top-title wow animate__animated animate__fadeInLeft "
                                                         data-wow-offset="50">
-                                                        Тренування
-                                                </div>
+                                                        Тренування</div>
                                                 <div class="training-inner__top-descr wow animated animate__fadeInRight "
                                                         data-wow-offset="50">
                                                         Ми пропонуємо обрати вигідний
-                                                        спортивний комплекс, де все продумано до дрібниць
-                                                </div>
+                                                        спортивний комплекс, де все продумано до дрібниць</div>
                                         </div>
                                         <div class="training-sliders-s">
                                                 <a href="#" class="">
                                                         <div class="training-inner__sliders">
                                                                 <div
                                                                         class="training-inner__sliders-box training-sliders">
-                                                                        <img th:src="@{/app/img/traing-slider-1.png}"
+                                                                        <img th:src="@{/img/traing-slider-1.png}"
                                                                                 alt="traing-slider-1">
                                                                         <div class="training-sliders__inside">
                                                                                 <div class="training-sliders__title">
-                                                                                        Mini
-                                                                                </div>
+                                                                                        Mini</div>
                                                                                 <div class="training-sliders__text">
                                                                                         Тренування
                                                                                         найменшої
-                                                                                        складності
-                                                                                </div>
+                                                                                        складності</div>
                                                                                 <ul class="training-sliders__info">
                                                                                         <li
                                                                                                 class="training-sliders__info-li">
@@ -200,8 +169,7 @@
                                                                                                 class="training-sliders__info-li">
                                                                                                 Допомога в
                                                                                                 підборі
-                                                                                                вправ
-                                                                                        </li>
+                                                                                                вправ</li>
                                                                                         <li
                                                                                                 class="training-sliders__info-li">
                                                                                                 Надання
@@ -220,23 +188,21 @@
                                                                                         грн/місяць
                                                                                 </div>
                                                                                 <img class="training-sliders__logo"
-                                                                                        th:src="@{/app/img/traing-logo.svg}"
+                                                                                     th:src="@{/img/traing-logo.svg}"
                                                                                         alt="traing-logo">
                                                                         </div>
                                                                 </div>
                                                 </a>
                                                 <a href="#">
                                                         <div class="training-inner__sliders-box training-sliders">
-                                                                <img th:src="@{/app/img/traing-slider-2.png}"
+                                                                <img th:src="@{/img/traing-slider-2.png}"
                                                                         alt="traing-slider-2">
                                                                 <div class="training-sliders__inside">
                                                                         <div class="training-sliders__title">
-                                                                                midi
-                                                                        </div>
+                                                                                midi</div>
                                                                         <div class="training-sliders__text">
                                                                                 Тренування
-                                                                                середньої складності
-                                                                        </div>
+                                                                                середньої складності</div>
                                                                         <ul class="training-sliders__info">
                                                                                 <li class="training-sliders__info-li">
                                                                                         Всі послуги в пакеті
@@ -259,23 +225,21 @@
                                                                                 грн/місяць
                                                                         </div>
                                                                         <img class="training-sliders__logo"
-                                                                                th:src="@{/app/img/traing-logo.svg}"
+                                                                             th:src="@{/img/traing-logo.svg}"
                                                                                 alt="traing-logo">
                                                                 </div>
                                                         </div>
                                                 </a>
                                                 <a href="#">
                                                         <div class="training-inner__sliders-box training-sliders">
-                                                                <img th:src="@{/app/img/traing-slider-1.png}"
+                                                                <img th:src="@{/img/traing-slider-1.png}"
                                                                         alt="traing-slider-1">
                                                                 <div class="training-sliders__inside">
                                                                         <div class="training-sliders__title">
-                                                                                Maxi
-                                                                        </div>
+                                                                                Maxi</div>
                                                                         <div class="training-sliders__text">
                                                                                 Тренування
-                                                                                найбільшої складності
-                                                                        </div>
+                                                                                найбільшої складності</div>
                                                                         <ul class="training-sliders__info">
                                                                                 <li class="training-sliders__info-li">
                                                                                         Всі послуги в пакеті
@@ -284,8 +248,7 @@
                                                                                 <li class="training-sliders__info-li">
                                                                                         Можливість користування
                                                                                         знижками
-                                                                                        від клубу
-                                                                                </li>
+                                                                                        від клубу</li>
                                                                                 <li class="training-sliders__info-li">
                                                                                         Консультації від тренера
                                                                                         на всіх
@@ -300,7 +263,7 @@
                                                                                 грн/місяць
                                                                         </div>
                                                                         <img class="training-sliders__logo"
-                                                                                th:src="@{/app/img/traing-logo.svg}"
+                                                                             th:src="@{/img/traing-logo.svg}"
                                                                                 alt="traing-logo">
                                                                 </div>
                                                         </div>
@@ -309,17 +272,15 @@
                                         <a href="#">
                                                 <div class="training-inner__sliders-media">
                                                         <div class="training-inner__sliders-box training-sliders">
-                                                                <img th:src="@{/app/img/traing-slider-1.png}"
+                                                                <img th:src="@{/img/traing-slider-1.png}"
                                                                         alt="traing-slider-1">
                                                                 <div class="training-sliders__inside">
                                                                         <div class="training-sliders__title">
-                                                                                Mini
-                                                                        </div>
+                                                                                Mini</div>
                                                                         <div class="training-sliders__text">
                                                                                 Тренування
                                                                                 найменшої
-                                                                                складності
-                                                                        </div>
+                                                                                складності</div>
                                                                         <ul class="training-sliders__info">
                                                                                 <li class="training-sliders__info-li">
                                                                                         Допомога
@@ -328,8 +289,7 @@
                                                                                 <li class="training-sliders__info-li">
                                                                                         Допомога в
                                                                                         підборі
-                                                                                        вправ
-                                                                                </li>
+                                                                                        вправ</li>
                                                                                 <li class="training-sliders__info-li">
                                                                                         Надання
                                                                                         рекомендацій від тренера
@@ -346,22 +306,20 @@
                                                                                 грн/місяць
                                                                         </div>
                                                                         <img class="training-sliders__logo"
-                                                                                th:src="@{/app/img/traing-logo.svg}"
+                                                                             th:src="@{/img/traing-logo.svg}"
                                                                                 alt="traing-logo">
                                                                 </div>
                                                         </div>
                                         </a>
                                         <a href="#">
                                                 <div class="training-inner__sliders-box training-sliders">
-                                                        <img th:src="@{/app/img/traing-slider-2.png}" alt="traing-slider-2">
+                                                        <img th:src="@{/img/traing-slider-2.png}" alt="traing-slider-2">
                                                         <div class="training-sliders__inside">
                                                                 <div class="training-sliders__title">
-                                                                        midi
-                                                                </div>
+                                                                        midi</div>
                                                                 <div class="training-sliders__text">
                                                                         Тренування
-                                                                        середньої складності
-                                                                </div>
+                                                                        середньої складності</div>
                                                                 <ul class="training-sliders__info">
                                                                         <li class="training-sliders__info-li">
                                                                                 Всі послуги в пакеті
@@ -384,22 +342,19 @@
                                                                         грн/місяць
                                                                 </div>
                                                                 <img class="training-sliders__logo"
-                                                                        th:src="@{/app/img/traing-logo.svg}"
-                                                                        alt="traing-logo">
+                                                                     th:src="@{/img/traing-logo.svg}" alt="traing-logo">
                                                         </div>
                                                 </div>
                                         </a>
                                         <a href="#">
                                                 <div class="training-inner__sliders-box training-sliders">
-                                                        <img th:src="@{/app/img/traing-slider-1.png}" alt="traing-slider-1">
+                                                        <img th:src="@{/img/traing-slider-1.png}" alt="traing-slider-1">
                                                         <div class="training-sliders__inside">
                                                                 <div class="training-sliders__title">
-                                                                        Maxi
-                                                                </div>
+                                                                        Maxi</div>
                                                                 <div class="training-sliders__text">
                                                                         Тренування
-                                                                        найбільшої складності
-                                                                </div>
+                                                                        найбільшої складності</div>
                                                                 <ul class="training-sliders__info">
                                                                         <li class="training-sliders__info-li">
                                                                                 Всі послуги в пакеті
@@ -408,8 +363,7 @@
                                                                         <li class="training-sliders__info-li">
                                                                                 Можливість користування
                                                                                 знижками
-                                                                                від клубу
-                                                                        </li>
+                                                                                від клубу</li>
                                                                         <li class="training-sliders__info-li">
                                                                                 Консультації від тренера
                                                                                 на всіх
@@ -424,8 +378,7 @@
                                                                         грн/місяць
                                                                 </div>
                                                                 <img class="training-sliders__logo"
-                                                                        th:src="@{/app/img/traing-logo.svg}"
-                                                                        alt="traing-logo">
+                                                                     th:src="@{/img/traing-logo.svg}" alt="traing-logo">
                                                         </div>
                                                 </div>
                                         </a>
@@ -469,22 +422,22 @@
                                                         href="mailto:maximusclub@gmail.com">maximusclub@gmail.com</a>
                                                 <ul>
                                                         <li><a href="https://www.instagram.com/maximus_hlukhiv/"><img
-                                                                                th:src="@{/app/img/footer-inst.svg}"
+                                                                th:src="@{/img/footer-inst.svg}"
                                                                                 alt="footer-inst"
                                                                                 class="footer-img-li"></a>
                                                         </li>
                                                         <li><a href="https://goo.gl/maps/vwxGHxtwaHgawLtn8"><img
-                                                                                th:src="@{/app/img/footer-googl.svg}"
+                                                                th:src="@{/img/footer-googl.svg}"
                                                                                 alt="footer-inst"
                                                                                 class="footer-img-li"></a>
                                                         </li>
                                                         <li><a href="https://www.youtube.com/"><img
-                                                                                th:src="@{/app/img/footer-youtube.svg}"
+                                                                th:src="@{/img/footer-youtube.svg}"
                                                                                 alt="footer-inst"
                                                                                 class="footer-img-li"></a>
                                                         </li>
                                                 </ul>
-                                                <a href="#"><img th:src="@{/app/img/navigation-arrow.svg}" alt="arrow"></a>
+                                                <a href="#"><img th:src="@{/img/navigation-arrow.svg}" alt="arrow"></a>
                                         </div>
                                 </div>
                                 <div class="footer__outer-bottom">
@@ -516,8 +469,8 @@
                                                                         <input type="tel" name="password"
                                                                                 placeholder="Пароль" required=""
                                                                                 class="input">
-                                                                        <button class="connection__inner-form-btn">Увійти
-                                                                        </button>
+                                                                        <button
+                                                                                class="connection__inner-form-btn">Увійти</button>
                                                                 </form>
                                                         </div>
                                                 </div>
@@ -539,9 +492,8 @@
                                                                         <input type="tel" name="password"
                                                                                 placeholder="Пароль" required=""
                                                                                 class="input">
-                                                                        <button class="connection__inner-form-btn">
-                                                                                Зареєструватися
-                                                                        </button>
+                                                                        <button
+                                                                                class="connection__inner-form-btn">Зареєструватися</button>
                                                                 </form>
                                                         </div>
                                                 </div>
@@ -551,12 +503,12 @@
                 </div>
         </div>
 
-        <script th:src="@{/app/js/libs.min.js} "></script>
-        <script th:src="@{/app/js/script.js} "></script>
+        <script th:src="@{/js/libs.min.js} "></script>
+        <script th:src="@{/js/script.js} "></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js "></script>
         <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-        <script th:src="@{/app/js/slick.min.js }"></script>
-        <script th:src="@{/app/js/main.js} "></script>
+        <script th:src="@{/js/slick.min.js} "></script>
+        <script th:src="@{/js/main.js} "></script>
 
 </body>
 

@@ -23,7 +23,7 @@ public class GymMembership {
     private String email;
     @Column(name = "commentary")
     private String commentary;
-    @Column(name = "gym_membership_type")
+
     private String gymMembershipType;
 
     public GymMembership() {

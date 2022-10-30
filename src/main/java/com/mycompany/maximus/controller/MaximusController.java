@@ -25,6 +25,8 @@ public class MaximusController {
         this.gymMembershipRepository = gymMembershipRepository;
     }
 
+
+
     @GetMapping()
     public String showMainPage(@ModelAttribute("ask") Ask ask) {
         return "index";
@@ -32,7 +34,7 @@ public class MaximusController {
 
     @GetMapping("/buy-season-ticket")
     public String formBuyTicket(@ModelAttribute("formBuyTicket")GymMembership gymMembership){
-        return "ordering";
+        return "ordering-1";
 
     }
 
@@ -40,10 +42,16 @@ public class MaximusController {
     public String createGymMembership(@ModelAttribute("formBuyTicket")@Valid GymMembership gymMembership,
                                       BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            return "ordering";
+            return "ordering-1";
         }
         gymMembershipRepository.save(gymMembership);
-        return "redirect:/maximus";
+        return "redirect:/maximus/buy-season-ticket/successful";
+    }
+
+
+    @GetMapping("/buy-season-ticket/successful")
+    public String createGymMembershipSuccessful(){
+        return "ordering-2";
     }
 
     @PostMapping()
