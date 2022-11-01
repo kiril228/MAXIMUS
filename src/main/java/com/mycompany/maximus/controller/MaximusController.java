@@ -5,6 +5,8 @@ import com.mycompany.maximus.models.GymMembership;
 import com.mycompany.maximus.models.GymMembershipType;
 import com.mycompany.maximus.repositories.AskRepository;
 import com.mycompany.maximus.repositories.GymMembershipRepository;
+import com.mycompany.maximus.services.AskService;
+import com.mycompany.maximus.services.GymMembershipService;
 import com.mycompany.maximus.services.GymMembershipTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,15 +21,15 @@ import javax.validation.Valid;
 public class MaximusController {
 
 
-    private  final AskRepository askRepository;
-    private  final GymMembershipRepository gymMembershipRepository;
+    private  final AskService askService;
+    private  final GymMembershipService gymMembershipService;
 
     private  final GymMembershipTypeService gymMembershipTypeService;
 
     @Autowired
-    public MaximusController(AskRepository askRepository, GymMembershipRepository gymMembershipRepository, GymMembershipTypeService gymMembershipTypeService) {
-        this.askRepository = askRepository;
-        this.gymMembershipRepository = gymMembershipRepository;
+    public MaximusController(AskService askService,  GymMembershipService  gymMembershipService, GymMembershipTypeService gymMembershipTypeService) {
+        this.askService = askService;
+        this.gymMembershipService =  gymMembershipService;
         this.gymMembershipTypeService = gymMembershipTypeService;
     }
 
@@ -48,11 +50,14 @@ public class MaximusController {
 
     @PostMapping("/buy-season-ticket")
     public String createGymMembership(@ModelAttribute("formBuyTicket")@Valid GymMembership gymMembership,
-                                      BindingResult bindingResult){
+                                      BindingResult bindingResult, @RequestParam(value = "trainingTypeNumber")Long id){
         if (bindingResult.hasErrors()){
             return "ordering-1";
         }
-        gymMembershipRepository.save(gymMembership);
+        System.out.println(id);
+        gymMembership.setGymMembershipType(gymMembershipTypeService.getTypeById(id));
+        gymMembershipService.saveGymMembership(gymMembership);
+
         return "redirect:/maximus/buy-season-ticket/successful";
     }
 
@@ -66,7 +71,7 @@ public class MaximusController {
     public String createAsk(@ModelAttribute("ask") @Valid Ask ask, BindingResult bindingResult) {
         if(bindingResult.hasErrors())
             return "index";
-        askRepository.save(ask);
+        askService.save(ask);
         return "redirect:/maximus";
     }
 

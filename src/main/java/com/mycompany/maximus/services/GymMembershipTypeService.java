@@ -19,6 +19,10 @@ public class GymMembershipTypeService {
         this.gymMembershipTypeRepository = gymMembershipTypeRepository;
     }
 
+    public  GymMembershipType getTypeById(Long id){
+       return gymMembershipTypeRepository.findById(id).orElse(null);
+    }
+
     public List<GymMembershipType> getTypeTraining(){
         return  gymMembershipTypeRepository.findAll();
     }

@@ -2,6 +2,7 @@ package com.mycompany.maximus.models;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Entity
 @Table(name = "gym_membership")
