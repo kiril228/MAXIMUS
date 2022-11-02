@@ -51,11 +51,11 @@ public class MaximusController {
     @PostMapping("/buy-season-ticket")
     public String createGymMembership(@ModelAttribute("formBuyTicket")@Valid GymMembership gymMembership,
                                       BindingResult bindingResult, @RequestParam(value = "trainingTypeNumber")Long id){
-        gymMembership.setGymMembershipType(gymMembershipTypeService.getTypeById(id));
+
         if (bindingResult.hasErrors()){
             return "ordering-1";
         }
-        System.out.println(id);
+        gymMembership.setGymMembershipType(gymMembershipTypeService.getTypeById(id));
         gymMembershipService.saveGymMembership(gymMembership);
         return "redirect:/maximus/buy-season-ticket/successful";
     }

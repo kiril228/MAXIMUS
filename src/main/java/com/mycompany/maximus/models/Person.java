@@ -8,11 +8,11 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "password")
     private String password;
@@ -20,20 +20,20 @@ public class Person {
     @Column(name = "year_of_birth")
     private int yearOfBirth;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String username) {
+        this.email = username;
     }
 
     public String getPassword() {
@@ -55,8 +55,8 @@ public class Person {
         this.yearOfBirth = yearOfBirth;
     }
 
-    public Person(String username, String password, int yearOfBirth) {
-        this.username = username;
+    public Person(String email, String password, int yearOfBirth) {
+        this.email = email;
         this.password = password;
         this.yearOfBirth = yearOfBirth;
     }
