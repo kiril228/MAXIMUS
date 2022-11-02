@@ -2,6 +2,9 @@ package com.mycompany.maximus.models;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.Optional;
 
 @Entity
@@ -14,12 +17,20 @@ public class GymMembership {
     @Column(name = "id")
     private Long id;
 
+    @NotEmpty(message = "Поле з вашим іменем має бути заповненим!")
     @Column(name = "name")
     private String name;
+    @NotEmpty(message = "Поле з вашою фамілією має бути заповненим!")
     @Column( name = "surname")
     private String surname;
+    @NotEmpty(message = "Щоб ми зв'язались з вами, вам потрібно вказати свій номер")
+    @Pattern(regexp = "^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",
+            message = "Введіть коректний номер телефону! Приклад: +111 (202) 555-0125")
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @NotEmpty
+    @Email
     @Column(name = "email")
     private String email;
     @Column(name = "commentary")
